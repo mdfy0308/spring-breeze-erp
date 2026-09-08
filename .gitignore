@@ -1,0 +1,28 @@
+﻿# Backend
+BACK/.gradle/
+BACK/build/
+BACK/.settings/
+BACK/.classpath
+BACK/.project
+BACK/bin/
+*.class
+*.jar
+*.war
+.env
+
+# Frontend
+FRONT/node_modules/
+FRONT/.next/
+FRONT/out/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Security
+*.pem
