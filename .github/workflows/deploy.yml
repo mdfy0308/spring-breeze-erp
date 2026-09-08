@@ -49,7 +49,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: BACK/build/libs/*.jar
           target: /home/ubuntu/app/back/build/libs/
-          strip_components: 4
+          strip_components: 3
 
       - name: Deploy Frontend to EC2
         uses: appleboy/scp-action@v0.1.7
