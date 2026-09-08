@@ -71,15 +71,18 @@ jobs:
             # 환경변수 로드
             export $(cat /home/ubuntu/app/.env | xargs)
 
+            # plain.jar 삭제 (잘못된 JAR 실행 방지)
+            rm -f /home/ubuntu/app/back/build/libs/*-plain.jar
+
             # 백엔드 재시작
             cd /home/ubuntu/app/back/build/libs
             pm2 delete backend 2>/dev/null || true
-            pm2 start "java -jar -Dspring.profiles.active=prod bootSBerp-0.0.1-SNAPSHOT.jar" --name backend
+            pm2 start "java -jar -Dspring.profiles.active=prod -Dspring.jpa.hibernate.ddl-auto=update bootSBerp-0.0.1-SNAPSHOT.jar" --name backend
 
             # 프론트엔드 재시작
             cd /home/ubuntu/app/front
             npm ci --production
             pm2 delete frontend 2>/dev/null || true
-            NEXT_PUBLIC_API_BASE_URL=$NEXT_PUBLIC_API_BASE_URL pm2 start npm --name frontend -- start
+            pm2 start npm --name frontend -- start
 
             pm2 save
