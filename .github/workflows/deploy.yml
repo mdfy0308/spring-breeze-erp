@@ -77,8 +77,7 @@ jobs:
             # 백엔드 재시작
             cd /home/ubuntu/app/back/build/libs
             pm2 delete backend 2>/dev/null || true
-            pm2 start "java -jar -Dspring.profiles.active=prod -Dspring.jpa.hibernate.ddl-auto=update bootSBerp-0.0.1-SNAPSHOT.jar" --name backend
-
+            pm2 start "java -Xms256m -Xmx512m -jar -Dspring.profiles.active=prod -Dspring.jpa.hibernate.ddl-auto=update bootSBerp-0.0.1-SNAPSHOT.jar" --name backend
             # 프론트엔드 재시작
             cd /home/ubuntu/app/front
             npm ci --production
